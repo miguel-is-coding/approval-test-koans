@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class UsingReporters extends Koans
 {
   @Test
-  @UseReporter(_____.class)
+  @UseReporter(FileLauncherReporter.class)
   public void ConfiguringTheFileLauncherReporter() throws Exception
   {
     ApprovalFailureReporter reporter = getReporter();
@@ -38,7 +38,7 @@ public class UsingReporters extends Koans
   public void ConfiguringAClassLevelDefault() throws Exception
   {
     ApprovalFailureReporter reporter = getReporter();
-    assertReporter(reporter, _____.class);
+    assertReporter(reporter, QuietReporter.class);
   }
   @Test
   @UseReporter({ClipboardReporter.class, ImageWebReporter.class, TortoiseImageDiffReporter.class})
@@ -46,13 +46,13 @@ public class UsingReporters extends Koans
   {
     MultiReporter multi = (MultiReporter) getReporter();
     ApprovalFailureReporter second = multi.getReporters()[1];
-    assertReporter(second, _____.class);
+    assertReporter(second, ImageWebReporter.class);
   }
   @Test
   @UseReporter(FileLauncherReporter.class)
   public void UsingTextReportersForInsight() throws Exception
   {
-    if (!decode("=fikpKnf").equals(___))
+    if (!decode("=fikpKnf").equals("Forty Two"))
     {
       ApprovalFailureReporter reporter = ReporterFactory.get();
       reporter.report(getPath("Insight.txt"), "");
@@ -63,7 +63,7 @@ public class UsingReporters extends Koans
   @UseReporter(ImageWebReporter.class)
   public void UsingImageForInsight() throws Exception
   {
-    String whatWasTheOldColor = ___;
+    String whatWasTheOldColor = "Blue";
     if (!decode("Ycl\\").equals(whatWasTheOldColor.toLowerCase()))
     {
       ApprovalFailureReporter reporter = ReporterFactory.get();
